@@ -1,0 +1,32 @@
+{
+  "cars": [
+    {
+      "id": 1,
+      "name": "Bugatti Bolide",
+      "horsepower": 1850,
+      "top_speed": "500 km/h",
+      "price": "$4,000,000"
+    },
+    {
+      "id": 2,
+      "name": "Devel Sixteen",
+      "horsepower": 5007,
+      "top_speed": "560 km/h",
+      "price": "$1,800,000"
+    },
+    {
+      "id": 3,
+      "name": "Koenigsegg Gemera",
+      "horsepower": 1700,
+      "top_speed": "400 km/h",
+      "price": "$1,700,000"
+    },
+    {
+      "id": 4,
+      "name": "Rimac Nevera",
+      "horsepower": 1914,
+      "top_speed": "412 km/h",
+      "price": "$2,400,000"
+    }
+  ]
+}
