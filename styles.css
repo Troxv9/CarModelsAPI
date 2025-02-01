@@ -1,0 +1,488 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Roboto Condensed", sans-serif;
+  background-color: black;
+  color: white;
+  height: 100vh;
+}
+
+.navbar {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding: 35px 50px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.9);
+  transition: all 0.5s ease;
+  z-index: 998;
+}
+
+.logo img {
+  position: absolute;
+  top: 33px;
+  left: 77px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: color 0.4s ease;
+  padding: 5px 0;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: white;
+  left: 0;
+  bottom: -5px;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.nav-links {
+  margin-left: 11.4rem;
+  white-space: nowrap;
+}
+
+.nav-links a:hover::after {
+  transform: scaleX(1);
+}
+.auth-buttons {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.auth-buttons a {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 8px 15px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.sign-in {
+  color: white;
+  border: 2px solid white;
+}
+
+.sign-in:hover {
+  background: white;
+  color: black;
+}
+
+.sign-up {
+  background: #ff4c4c;
+  color: white;
+  border: 2px solid #ff4c4c;
+}
+
+.sign-up:hover {
+  background: rgb(0, 0, 0);
+  color: #ff4c4c;
+}
+.user-profile {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.profile-icon {
+  width: 63px;
+  height: 63px;
+  cursor: pointer;
+}
+
+.dropdown {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  position: absolute;
+  top: 100px;
+  right: 45px;
+  background: rgb(250, 250, 250);
+  padding: 1px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+}
+.dropdown:hover {
+  background: rgba(255, 255, 255, 0.842);
+}
+.dropdown.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  display: block;
+  padding: 5px 10px;
+  transition: background 0.3s;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.modal-content {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  width: 30%;
+  margin: 13.5% auto;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  position: relative;
+  animation: slideIn 0.4s ease-in-out;
+  box-shadow: 0px 4px 20px rgba(255, 255, 255, 0.2);
+}
+
+.modal-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-logo img {
+  height: 70px;
+  width: 70px;
+  margin-left: 0.88rem;
+}
+.modal button {
+  margin: 10px;
+}
+input {
+  width: 85%;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  outline: none;
+}
+
+input::placeholder {
+  color: gray;
+}
+
+button {
+  width: 90%;
+  padding: 12px;
+  background: white;
+  color: black;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: gray;
+  color: white;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 35px;
+  cursor: pointer;
+  z-index: 20000;
+}
+
+.switch-modal {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.switch-modal a {
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.error-msg {
+  color: #ff4c4c;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.vid {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.vid video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#signInForm,
+#signUpForm {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.show-form {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-30px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* RESPONSIVE */
+@media (max-width: 1480px) {
+  .modal-content {
+    margin: 17.5% auto;
+    width: 40%;
+  }
+}
+@media (max-width: 1024px) {
+  .nav-links a {
+    font-size: 12px;
+  }
+  .auth-buttons {
+    height: 63px;
+  }
+  .auth-buttons a {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  .logo img {
+    height: 70px;
+    left: 65px;
+  }
+  .nav-links {
+    margin-left: 8.45rem;
+  }
+  .modal-content {
+    margin: 26% auto;
+  }
+  input {
+    font-size: 14px;
+  }
+  .switch-modal a {
+    white-space: nowrap;
+    padding: 5px;
+  }
+  #signUpForm button,
+  #signInForm button {
+    padding: 11px;
+    font-size: 13px;
+  }
+}
+@media (max-width: 768px) {
+  .navbar {
+    padding: 35px 20px;
+  }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.9);
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+  .logo img {
+    left: 20px;
+  }
+  .dropdown {
+    right: 75px;
+  }
+  .modal-content {
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .close {
+    font-size: 45px;
+  }
+
+  .switch-modal {
+    font-size: 12px;
+    padding: 5px;
+  }
+  input {
+    font-size: 12px;
+  }
+  .nav-links {
+    display: none;
+  }
+  .nav-links {
+    display: none;
+  }
+  .menu-icon {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    margin-left: 0.65rem;
+  }
+  .mobile-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-100%);
+    transition: transform 0.5s ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 10000;
+  }
+
+  .mobile-nav.show {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .close-menu {
+    position: absolute;
+    top: 34px;
+    right: 31px;
+    font-size: 55px;
+    cursor: pointer;
+    z-index: 20000;
+  }
+  .mobile-nav-links {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+  }
+
+  .mobile-nav-links li {
+    margin: 35px 0;
+    opacity: 0;
+  }
+
+  .mobile-nav-links a {
+    color: white;
+    font-size: 74px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .mobile-nav-links a:hover {
+    color: #ff4c4c;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-buttons a {
+    padding: 4px 10px;
+    font-size: 11px;
+  }
+  .mobile-nav-links a {
+    font-size: 52px;
+  }
+}
+@media (max-width: 320px) {
+  .mobile-nav-links a {
+    font-size: 32px;
+  }
+}
+@media (min-width: 768px) {
+  .menu-icon {
+    display: none;
+  }
+  .mobile-nav {
+    display: none;
+  }
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OverdriveX</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="logo"><img src="/assets/logo.svg" alt="Logo" /></div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Models</a></li>
+          <li><a href="#">Engines</a></li>
+          <li><a href="#">About Us</a></li>
+        </ul>
+      </nav>
+      <div class="auth-buttons">
+        <a href="#" class="sign-in" onclick="openModal('signIn')">Sign In</a>
+        <a href="#" class="sign-up" onclick="openModal('signUp')">Register</a>
+      </div>
+      <div class="user-profile" style="display: none"></div>
+      <div class="menu-icon" id="menuIcon"></div>
+    </header>
+
+    <div class="mobile-nav" id="mobileNav">
+      <span class="close-menu" id="closeMenu">&times;</span>
+      <ul class="mobile-nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Models</a></li>
+        <li><a href="#">Engines</a></li>
+        <li><a href="#">About Us</a></li>
+      </ul>
+    </div>
+    <main>
+      <section class="vid">
+        <video autoplay loop muted playsinline>
+          <source src="/assets/mainbg.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </section>
+    </main>
+
+    <div class="modal" id="authModal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+
+        <div id="signInForm">
+          <div class="modal-logo">
+            <img src="/assets/logo.svg" alt="Logo" />
+          </div>
+          <input type="email" id="signInEmail" placeholder="Email" required />
+          <input
+            type="password"
+            id="signInPassword"
+            placeholder="Password"
+            required
+          />
+          <button onclick="validateSignIn()">Sign In</button>
+          <p class="switch-modal">
+            Don't have an account?
+            <a href="#" onclick="switchForm('signUp')">Register an Account</a>
+          </p>
+          <p id="signInError" class="error-msg"></p>
+        </div>
+
+        <div id="signUpForm" style="display: none">
+          <div class="modal-logo">
+            <img src="/assets/logo.svg" alt="Logo" />
+          </div>
+          <input
+            type="text"
+            id="signUpUsername"
+            placeholder="Username"
+            required
+          />
+          <input type="email" id="signUpEmail" placeholder="Email" required />
+          <input
+            type="password"
+            id="signUpPassword"
+            placeholder="Password"
+            required
+          />
+          <button onclick="validateSignUp()">Sign Up</button>
+          <p class="switch-modal">
+            Already have an account?
+            <a href="#" onclick="switchForm('signIn')">Sign In</a>
+          </p>
+          <p id="signUpError" class="error-msg"></p>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
