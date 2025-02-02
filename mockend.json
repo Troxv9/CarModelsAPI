@@ -29,4 +29,84 @@
       "price": "$2,400,000"
     }
   ]
+  {
+  "cars": [
+    {
+      "id": 1,
+      "name": "Bugatti Bolide",
+      "horsepower": 1850,
+      "top_speed": "500 km/h",
+      "price": "$4,000,000"
+    },
+    {
+      "id": 2,
+      "name": "Devel Sixteen",
+      "horsepower": 5007,
+      "top_speed": "560 km/h",
+      "price": "$1,800,000"
+    },
+    {
+      "id": 3,
+      "name": "Koenigsegg Gemera",
+      "horsepower": 1700,
+      "top_speed": "400 km/h",
+      "price": "$1,700,000"
+    },
+    {
+      "id": 4,
+      "name": "Rimac Nevera",
+      "horsepower": 1914,
+      "top_speed": "412 km/h",
+      "price": "$2,400,000"
+    }
+  ],
+  "engines": [
+    {
+      "name": "V6 Engine",
+      "cylinders": 6,
+      "displacement": "2.5L – 4.0L",
+      "power_output": "~250 – 400 HP",
+      "torque": "~250 – 400 Nm",
+      "rpm_range": "6,000 – 7,500 RPM",
+      "fuel_efficiency": "~8 – 12 km/L",
+    },
+    {
+      "name": "V8 Engine",
+      "cylinders": 8,
+      "displacement": "4.0L – 7.0L",
+      "power_output": "~400 – 700 HP",
+      "torque": "~500 – 800 Nm",
+      "rpm_range": "6,500 – 8,000 RPM",
+      "fuel_efficiency": "~5 – 10 km/L",
+    },
+    {
+      "name": "V10 Engine",
+      "cylinders": 10,
+      "displacement": "5.0L – 8.4L",
+      "power_output": "~500 – 800 HP",
+      "torque": "~500 – 900 Nm",
+      "rpm_range": "7,000 – 9,000 RPM",
+      "fuel_efficiency": "~4 – 8 km/L",
+    },
+    {
+      "name": "V12 Engine",
+      "cylinders": 12,
+      "displacement": "5.5L – 7.5L",
+      "power_output": "~600 – 900 HP",
+      "torque": "~600 – 1,000 Nm",
+      "rpm_range": "7,500 – 9,500 RPM",
+      "fuel_efficiency": "~3 – 7 km/L",
+    },
+    {
+      "name": "V16 Engine",
+      "cylinders": 16,
+      "displacement": "8.0L – 12.3L",
+      "power_output": "~1,000+ HP",
+      "torque": "~1,200+ Nm",
+      "rpm_range": "6,000 – 8,000 RPM",
+      "fuel_efficiency": "~2 – 5 km/L",
+    }
+  ]
+}
+
 }
