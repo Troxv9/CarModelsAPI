@@ -277,3 +277,323 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("menuIcon").addEventListener("click", openMenu);
   closeMenuBtn.addEventListener("click", closeMenu);
 });
+
+document.addEventListener("DOMContentLoaded", async () => {
+  const jsonURL =
+    "https://raw.githubusercontent.com/Troxv9/CarModelsAPI/refs/heads/main/mockend.json";
+
+  try {
+    const response = await fetch(jsonURL);
+    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+    const data = await response.json();
+    console.log("Fetched data:", data);
+
+    if (!data.engines || !Array.isArray(data.engines)) {
+      throw new Error("No engines data found!");
+    }
+
+    const engines = data.engines;
+    const engineTextBlocks = document.querySelectorAll(".engine-text");
+
+    if (engines.length < engineTextBlocks.length) {
+      console.warn("Not enough engine data available!");
+    }
+
+    engineTextBlocks.forEach((block, index) => {
+      if (engines[index]) {
+        block.innerHTML = `
+          <h3>${engines[index].name}</h3>
+          <ul>
+            <li><strong>Cylinders:</strong> ${engines[index].cylinders}</li>
+            <li><strong>Displacement:</strong> ${engines[index].displacement}</li>
+            <li><strong>Power Output:</strong> ${engines[index].power_output}</li>
+            <li><strong>Torque:</strong> ${engines[index].torque}</li>
+            <li><strong>RPM Range:</strong> ${engines[index].rpm_range}</li>
+            <li><strong>Fuel Efficiency:</strong> ${engines[index].fuel_efficiency}</li>
+          </ul>
+        `;
+        block.style.opacity = "1";
+        block.style.transform = "translateX(0)";
+        block.style.clipPath = "inset(0 0 0 0)";
+      }
+    });
+
+    console.log("Engine text successfully inserted!");
+
+    if (typeof gsap !== "undefined") {
+      gsap.from(".engine-text", {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        stagger: 0.3,
+      });
+    } else {
+      console.warn("GSAP is not loaded!");
+    }
+  } catch (error) {
+    console.error("Error fetching engine data:", error);
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const engineRows = document.querySelectorAll(".engine-row");
+
+  const observer = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+
+  engineRows.forEach((row) => observer.observe(row));
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const slider = document.querySelector(".scroll-wrapper");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  const jsonURL =
+    "https://raw.githubusercontent.com/Troxv9/CarModelsAPI/refs/heads/main/mockend.json";
+
+  let index = 1;
+  let slideWidth;
+  let autoPlayInterval;
+  let totalSlides;
+
+  fetch(jsonURL)
+    .then((response) => response.json())
+    .then((data) => {
+      const cars = data.cars;
+      slider.innerHTML = "";
+
+      cars.forEach((car) => {
+        const carHTML = `
+          <article class="car scroll-slide">
+            <div class="scroll-line"></div>
+            <div class="car-container">
+              <div class="car-image">
+                <img
+                  src="/assets/images/${car.name}.png"
+                  width="700px"
+                  alt="${car.name}"
+                  onerror="this.onerror=null; this.src='/assets/images/placeholder.png';"
+                />
+              </div>
+              <div class="car-body">
+                <ul class="car-title">${car.name.replace(/_/g, " ")}</ul>
+               <li>Horsepower: ${car.horsepower}hp</li> 
+               <li>Top Speed: ${car.top_speed}</li>
+                <p class="car-price">Starting from <strong>${
+                  car.price
+                }</strong></p>
+              </div>
+            </div>
+          </article>
+        `;
+        slider.innerHTML += carHTML;
+      });
+
+      setTimeout(() => initializeCarousel(), 100);
+    })
+    .catch((error) => console.error("Error fetching car data:", error));
+
+  function initializeCarousel() {
+    const slides = Array.from(document.querySelectorAll(".scroll-slide"));
+
+    if (slides.length === 0) return;
+
+    slideWidth = slides[0].offsetWidth;
+    totalSlides = slides.length;
+
+    const firstClone = slides[0].cloneNode(true);
+    const lastClone = slides[slides.length - 1].cloneNode(true);
+
+    slider.appendChild(firstClone);
+    slider.insertBefore(lastClone, slides[0]);
+
+    slider.style.transform = `translateX(-${index * slideWidth}px)`;
+
+    startAutoPlay();
+  }
+
+  function moveSlide(direction) {
+    slider.style.transition = "transform 0.7s ease-in-out";
+
+    if (direction === "next") {
+      index++;
+    } else {
+      index--;
+    }
+
+    slider.style.transform = `translateX(-${index * slideWidth}px)`;
+
+    setTimeout(() => {
+      if (index >= totalSlides + 1) {
+        slider.style.transition = "none";
+        index = 1;
+        slider.style.transform = `translateX(-${index * slideWidth}px)`;
+      } else if (index <= 0) {
+        slider.style.transition = "none";
+        index = totalSlides;
+        slider.style.transform = `translateX(-${index * slideWidth}px)`;
+      }
+    }, 700);
+  }
+
+  function startAutoPlay() {
+    autoPlayInterval = setInterval(() => {
+      moveSlide("next");
+    }, 4000);
+  }
+
+  function stopAutoPlay() {
+    clearInterval(autoPlayInterval);
+  }
+
+  prevBtn.addEventListener("click", () => {
+    stopAutoPlay();
+    moveSlide("prev");
+    startAutoPlay();
+  });
+
+  nextBtn.addEventListener("click", () => {
+    stopAutoPlay();
+    moveSlide("next");
+    startAutoPlay();
+  });
+
+  window.addEventListener("resize", () => {
+    slideWidth = document.querySelector(".scroll-slide").offsetWidth;
+    slider.style.transform = `translateX(-${index * slideWidth}px)`;
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const cookieBanner = document.getElementById("cookie-banner");
+  const acceptCookies = document.getElementById("acceptCookies");
+  const openPolicy = document.getElementById("openPolicy");
+  const cookieModal = document.getElementById("cookie-modal");
+  const closeModal = document.getElementById("closeModal");
+  const modalBody = document.querySelector(".cookie-modal-body");
+
+  setTimeout(() => {
+    cookieBanner.classList.add("show");
+  }, 1000);
+
+  acceptCookies.addEventListener("click", function () {
+    fadeOut(cookieBanner);
+  });
+
+  openPolicy.addEventListener("click", async function (event) {
+    event.preventDefault();
+    await fetchPrivacyPolicy();
+    showModal(cookieModal);
+  });
+
+  closeModal.addEventListener("click", function () {
+    hideModal(cookieModal);
+    fadeOut(cookieBanner);
+  });
+
+  window.addEventListener("click", function (event) {
+    if (event.target === cookieModal) {
+      hideModal(cookieModal);
+    }
+  });
+
+  function showModal(modal) {
+    modal.classList.add("show");
+    modal.style.visibility = "visible";
+    modal.style.opacity = "1";
+  }
+
+  function hideModal(modal) {
+    fadeOut(modal);
+  }
+
+  async function fetchPrivacyPolicy() {
+    try {
+      const response = await fetch("cookiesPolicy.json");
+      if (!response.ok) throw new Error("Failed to load privacy policy");
+
+      const data = await response.json();
+      modalBody.innerHTML = formatPolicy(data);
+    } catch (error) {
+      modalBody.innerHTML = `<p style="color: red;">Error loading privacy policy.</p>`;
+      console.error("Error fetching privacy policy:", error);
+    }
+  }
+
+  function formatPolicy(data) {
+    let html = `<h3>Last Updated:</h3><p>${data.last_updated}</p>`;
+    html += `<p>${data.welcome_message}</p>`;
+    html += `<h3>Information We Collect:</h3><ul>`;
+
+    for (const [key, value] of Object.entries(data.information_we_collect)) {
+      html += `<li><strong>${key}:</strong> ${value}</li>`;
+    }
+    html += `</ul>`;
+
+    html += `<h3>How We Use Your Information:</h3><ul>`;
+    data.how_we_use_your_information.forEach((item) => {
+      html += `<li>${item}</li>`;
+    });
+    html += `</ul>`;
+
+    html += `<h3>Data Security:</h3><ul>`;
+    for (const [key, value] of Object.entries(data.data_security)) {
+      html += `<li><strong>${key}:</strong> ${value}</li>`;
+    }
+    html += `</ul>`;
+
+    html += `<h3>Cookies:</h3><ul>`;
+    for (const [key, value] of Object.entries(data.cookies)) {
+      html += `<li><strong>${key}:</strong> ${value}</li>`;
+    }
+    html += `</ul>`;
+
+    html += `<h3>Your Rights:</h3><ul>`;
+    for (const [key, value] of Object.entries(data.your_rights)) {
+      html += `<li><strong>${key}:</strong> ${value}</li>`;
+    }
+    html += `</ul>`;
+
+    html += `<h3>Contact Us:</h3><ul>`;
+    for (const [key, value] of Object.entries(data.contact_us)) {
+      html += `<li><strong>${key}:</strong> ${value}</li>`;
+    }
+    html += `</ul>`;
+
+    return html;
+  }
+
+  function fadeOut(element, callback) {
+    element.style.opacity = "0";
+    setTimeout(() => {
+      element.style.visibility = "hidden";
+      element.classList.remove("show");
+      if (callback) callback();
+    }, 500);
+  }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll('nav a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute("href"));
+      if (target) {
+        window.scrollTo({
+          top: target.offsetTop - 50,
+          behavior: "smooth",
+        });
+      }
+    });
+  });
+});
