@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>OverdriveX</title>
     <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
+    <script defer src="script.js"></script>
   </head>
   <body>
     <header class="navbar">
@@ -13,8 +16,8 @@
       <nav>
         <ul class="nav-links">
           <li><a href="#">Home</a></li>
-          <li><a href="#">Models</a></li>
-          <li><a href="#">Engines</a></li>
+          <li><a href="#scroll-slider">Car Models</a></li>
+          <li><a href="#engines">Engines</a></li>
           <li><a href="#">About Us</a></li>
         </ul>
       </nav>
@@ -30,8 +33,8 @@
       <span class="close-menu" id="closeMenu">&times;</span>
       <ul class="mobile-nav-links">
         <li><a href="#">Home</a></li>
-        <li><a href="#">Models</a></li>
-        <li><a href="#">Engines</a></li>
+        <li><a href="#scroll-slider">Car Models</a></li>
+        <li><a href="#engines">Engines</a></li>
         <li><a href="#">About Us</a></li>
       </ul>
     </div>
@@ -41,6 +44,43 @@
           <source src="/assets/mainbg.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
+      </section>
+      <section class="car-models">
+        <h1 class="car-models-title">CAR MODELS</h1>
+        <div id="scroll-slider">
+          <button id="prevBtn" class="carousel-btn prev">&lt;</button>
+          <div class="scroll-wrapper"></div>
+          <button id="nextBtn" class="carousel-btn next">&gt;</button>
+        </div>
+      </section>
+
+      <section id="engines">
+        <h2 class="section-title">Engines</h2>
+
+        <div class="engine-row">
+          <video src="/assets/V6.mp4" autoplay loop muted playsinline></video>
+          <div class="engine-text">Loading V6 specifications...</div>
+        </div>
+
+        <div class="engine-row reverse">
+          <div class="engine-text">Loading V8 specifications...</div>
+          <video src="/assets/V8.mp4" autoplay loop muted playsinline></video>
+        </div>
+
+        <div class="engine-row">
+          <video src="/assets/V10.mp4" autoplay loop muted playsinline></video>
+          <div class="engine-text">Loading V10 specifications...</div>
+        </div>
+
+        <div class="engine-row reverse">
+          <div class="engine-text">Loading V12 specifications...</div>
+          <video src="/assets/V12.mp4" autoplay loop muted playsinline></video>
+        </div>
+
+        <div class="engine-row">
+          <video src="/assets/V16.mp4" autoplay loop muted playsinline></video>
+          <div class="engine-text">Loading V16 specifications...</div>
+        </div>
       </section>
     </main>
 
@@ -93,6 +133,39 @@
         </div>
       </div>
     </div>
-    <script src="script.js"></script>
+    <div id="cookie-banner" class="cookie-banner">
+      <p>
+        We use cookies to improve your experience. By using our site, you agree
+        to our <a href="#" id="openPolicy">privacy policy</a>.
+      </p>
+      <button id="acceptCookies">Accept</button>
+    </div>
+
+    <div id="cookie-modal" class="cookie-modal">
+      <div class="cookie-modal-content">
+        <h2>Privacy Policy</h2>
+        <div class="cookie-modal-body"></div>
+        <button id="closeModal">Accept</button>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-logo">OverdriveX</div>
+
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+      <div class="footer-bottom">© 2025 OverdriveX. All rights reserved.</div>
+      <div class="modal-logo">
+        <img src="/assets/logo.svg" alt="Logo" />
+      </div>
+    </footer>
+    <script
+      src="https://kit.fontawesome.com/9cb0a7c4b7.js"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
