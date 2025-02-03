@@ -2,21 +2,21 @@
   "cars": [
       {
       "id": 1,
-      "name": "Rimac Nevera",
+      "name": "rimac_nevera",
       "horsepower": 1914,
       "top_speed": "412 km/h",
       "price": "$2,400,000"
     },
     {
       "id": 2,
-      "name": "Maserati MC20",
+      "name": "maserati_mc20",
       "horsepower": 630,
       "top_speed": "325 km/h",
       "price": "$212,000"
     },
     {
       "id": 3,
-      "name": "Pagani Utopia",
+      "name": "pagani_utopia",
       "horsepower": 852,
       "top_speed": "349 km/h",
       "price": "$2,190,000"
