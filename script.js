@@ -66,7 +66,36 @@ function switchForm(type) {
     });
   }
 }
+document.addEventListener("DOMContentLoaded", function () {
+  document
+    .getElementById("toggleSignInPassword")
+    .addEventListener("click", function () {
+      togglePassword("signInPassword", this);
+    });
 
+  document
+    .getElementById("toggleSignUpPassword")
+    .addEventListener("click", function () {
+      togglePassword("signUpPassword", this);
+    });
+
+  function togglePassword(passwordFieldId, icon) {
+    const passwordField = document.getElementById(passwordFieldId);
+
+    if (!passwordField) {
+      console.error("Password field not found:", passwordFieldId);
+      return;
+    }
+
+    if (passwordField.type === "password") {
+      passwordField.type = "text";
+      icon.src = "/assets/openedeye.svg";
+    } else {
+      passwordField.type = "password";
+      icon.src = "/assets/closedeye.svg";
+    }
+  }
+});
 const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const passwordPattern =
   /^(?=.*[A-Z])(?=.*\d)(?=.*[@!#$%^&*])[A-Za-z\d@!#$%^&*]{6,}$/;
@@ -287,7 +316,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
     const data = await response.json();
-    console.log("Fetched data:", data);
 
     if (!data.engines || !Array.isArray(data.engines)) {
       throw new Error("No engines data found!");
@@ -318,8 +346,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         block.style.clipPath = "inset(0 0 0 0)";
       }
     });
-
-    console.log("Engine text successfully inserted!");
 
     if (typeof gsap !== "undefined") {
       gsap.from(".engine-text", {
