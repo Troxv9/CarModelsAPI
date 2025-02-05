@@ -93,12 +93,19 @@
             <img src="/assets/logo.svg" alt="Logo" />
           </div>
           <input type="email" id="signInEmail" placeholder="Email" required />
-          <input
-            type="password"
-            id="signInPassword"
-            placeholder="Password"
-            required
-          />
+          <div class="password-container">
+            <input
+              type="password"
+              id="signInPassword"
+              placeholder="Password"
+              required
+            />
+            <img
+              id="toggleSignInPassword"
+              src="/assets/closedeye.svg"
+              alt="Show Password"
+            />
+          </div>
           <button onclick="validateSignIn()">Sign In</button>
           <p class="switch-modal">
             Don't have an account?
@@ -118,12 +125,19 @@
             required
           />
           <input type="email" id="signUpEmail" placeholder="Email" required />
-          <input
-            type="password"
-            id="signUpPassword"
-            placeholder="Password"
-            required
-          />
+          <div class="password-container">
+            <input
+              type="password"
+              id="signUpPassword"
+              placeholder="Password"
+              required
+            />
+            <img
+              id="toggleSignUpPassword"
+              src="/assets/closedeye.svg"
+              alt="Show Password"
+            />
+          </div>
           <button onclick="validateSignUp()">Sign Up</button>
           <p class="switch-modal">
             Already have an account?
